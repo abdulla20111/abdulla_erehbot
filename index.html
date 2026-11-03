@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Maktab Ovozi</title>
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-wrapper">
+        <span class="logo-icon">🎓</span>
+        <h1 class="app-title">Maktab Ovozi</h1>
+      </div>
+      <p class="app-subtitle">
+        Loyiha yoki taklifingizni yozing. Ismingiz hech kimga ko&#8216;rinmaydi 🔒
+      </p>
+    </header>
 
+    <!-- Main Form Section -->
+    <main class="main-content">
+      <form id="suggestionForm" autocomplete="off" onsubmit="return false;">
+        
+        <!-- Textarea Card -->
+        <div class="input-card" id="inputCard">
+          <textarea 
+            id="messageInput" 
+            class="message-textarea" 
+            placeholder="Xabaringizni yozing..." 
+            maxlength="1000" 
+            rows="6"
+            spellcheck="false"
+          ></textarea>
+          
+          <div class="card-footer">
+            <div class="anon-badge">
+              <span class="anon-dot"></span>
+              <span class="anon-text">Anonim</span>
+            </div>
+            <div class="char-counter">
+              <span id="charCount">0</span> / 1000
+            </div>
+          </div>
+        </div>
+
+        <!-- Attachments Section -->
+        <div class="attachment-section">
+          <div class="attachment-actions">
+            <label class="attach-btn" for="photoInput" title="Rasm yuklash">
+              <span class="btn-icon">📷</span>
+              <span class="btn-text">Rasm</span>
+            </label>
+            <input type="file" id="photoInput" accept="image/*" multiple hidden>
+
+            <label class="attach-btn" for="fileInput" title="Fayl yuklash">
+              <span class="btn-icon">📁</span>
+              <span class="btn-text">Fayl</span>
+            </label>
+            <input type="file" id="fileInput" multiple hidden>
+            
+            <span class="attachment-hint" id="attachHint">Rasm yoki fayl biriktirish (ixtiyoriy)</span>
+          </div>
+
+          <!-- Selected Files Preview List -->
+          <div class="files-preview-container" id="filesPreviewContainer" style="display: none;">
+            <div class="preview-header">
+              <span class="preview-title">Biriktirilgan fayllar (<span id="fileCountBadge">0</span>)</span>
+              <button type="button" class="clear-all-btn" id="clearAllFilesBtn">Tozalash</button>
+            </div>
+            <div class="files-grid" id="filesGrid"></div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="submit-section">
+          <button type="button" class="submit-btn" id="submitBtn">
+            <span class="btn-text" id="submitBtnText">Yuborish</span>
+            <span class="spinner" id="submitSpinner"></span>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Success Screen (Modal / Overlay) -->
+      <div class="result-modal" id="resultModal" style="display: none;">
+        <div class="modal-card">
+          <div class="success-icon-wrapper">
+            <div class="checkmark-circle">
+              <svg viewBox="0 0 52 52" class="checkmark">
+                <circle class="checkmark-circle-bg" cx="26" cy="26" r="24" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="modal-title">Xabaringiz yuborildi!</h2>
+          <p class="modal-desc">
+            Taklif va tashabbusingiz uchun tashakkur. Xabaringiz to&#8216;liq anonim holda qabul qilindi 🔒
+          </p>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" id="newFeedbackBtn">Yana xabar yuborish</button>
+            <button type="button" class="close-web-btn" id="closeWebAppBtn">Yopish</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Notification Container -->
+      <div class="toast-container" id="toastContainer"></div>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
